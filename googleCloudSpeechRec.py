@@ -1,9 +1,10 @@
 # Imports the Google Cloud client library
 from google.cloud import speech
-import json
 import os
-import var_mod
+from var_mod import var
+from helper import Helper
 
+# set google api creds
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/Users/perudayani/Downloads/steam-glass-365615-d823e4ed9dfc.json"
 
 class SpeechRec():
@@ -12,7 +13,7 @@ class SpeechRec():
         client = speech.SpeechClient()
         audio = speech.RecognitionAudio(uri=gcs_uri)
 
-        if (var_mod.var == 0):
+        if (var == 0):
             config = speech.RecognitionConfig(
                 encoding=speech.RecognitionConfig.AudioEncoding.LINEAR16.ENCODING_UNSPECIFIED,
                 sample_rate_hertz=44100,
@@ -31,14 +32,7 @@ class SpeechRec():
 
         operation = client.long_running_recognize(config=config, audio=audio)
         print("Waiting for operation to complete...")
+
         response = operation.result(timeout=90)
-        make_json(response.results)
-
-    if (var_mod.var == 0):
-        gcs_uri = "gs://htv2022/audio-files/" + var_mod.rant[1]
-    else:
-        gcs_uri = "gs://htv2022/audio-files/" + var_mod.adver[1]
-
-
-    transcribe_file(gcs_uri)
+        Helper.make_resp_json(response.results)
 
