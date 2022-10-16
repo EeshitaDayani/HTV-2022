@@ -28,7 +28,7 @@ class Helper():
             threeList.append(res.labels['3'].confidence)
             fourList.append(res.labels['4'].confidence)
             fiveList.append(res.labels['5'].confidence)
-        print(np.array(zeroList))
+
         return [np.array(zeroList), np.array(oneList), np.array(twoList), np.array(threeList), np.array(fourList), np.array(fiveList)]
     
     def make_graph(ll):
