@@ -3,6 +3,7 @@ from google.cloud import speech
 import os
 from var_mod import var
 from helper import Helper
+import time 
 
 # set google api creds
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/Users/perudayani/Downloads/steam-glass-365615-d823e4ed9dfc.json"
@@ -15,7 +16,7 @@ class SpeechRec():
 
         if (var == 0):
             config = speech.RecognitionConfig(
-                encoding=speech.RecognitionConfig.AudioEncoding.LINEAR16.ENCODING_UNSPECIFIED,
+                encoding=speech.RecognitionConfig.AudioEncoding.FLAC.ENCODING_UNSPECIFIED,
                 sample_rate_hertz=44100,
                 language_code="en-US",
                 audio_channel_count=2,
@@ -31,8 +32,12 @@ class SpeechRec():
             )
 
         operation = client.long_running_recognize(config=config, audio=audio)
-        print("Waiting for operation to complete...")
+        print("Transcribing audio file")
 
-        response = operation.result(timeout=90)
+        time.sleep(7)
+
+        print("Summarizing data")
+        response = operation.result()
+
         Helper.make_resp_json(response.results)
 

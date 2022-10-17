@@ -13,7 +13,7 @@ class Helper():
         with open("results.json", "w+") as file:
             json.dump(rows, file)
         
-        print("completed")
+        print("Completed")
 
     def make_output_json(data, filename):
         with open(filename, "w+") as file:

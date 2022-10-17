@@ -8,7 +8,7 @@ class emotionClassificationModel():
     def getECMresp(test_list):
         response = co.classify(
             model='54c4bd39-c594-45a4-a7ea-f8d43f8acdd3-ft',
-            inputs=test_list[:100])
+            inputs=[x for x in test_list if x])
 
         return response.classifications
 
@@ -16,17 +16,16 @@ class textSummarizationModel():
     def getSummary(s):
         # s = 'As much as my pain is screaming at me to not do anything, I have to clean the house or it will just get worse.'
         response = co.generate(
-            model='1bccf295-9d16-437e-bccf-c182990f5d45-ft',
-            prompt=s,
-            max_tokens=len(s)//2,
-            temperature=0.3,
-            k=15,
+            model='large',
+            prompt=s+"\n--\nPassage: "+s+'\n\nTLDR:',
+            max_tokens=50,
+            temperature=0.8,
+            k=0,
             p=1,
             frequency_penalty=0,
             presence_penalty=0,
-            stop_sequences=[],
+            stop_sequences=["--"],
             return_likelihoods=None)
 
-        resp = response.generations[0].text
-        split = resp.split('\n')
-        print (split[1])
+        pred = pred+(response.generations[0].text).strip()
+        print (pred)
