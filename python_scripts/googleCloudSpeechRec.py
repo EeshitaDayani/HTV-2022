@@ -1,8 +1,8 @@
 # Imports the Google Cloud client library
 from google.cloud import speech
 import os
-from var_mod import var
-from helper import Helper
+from python_scripts.var_mod import var
+from python_scripts.helper import Helper
 import time 
 
 # set google api creds

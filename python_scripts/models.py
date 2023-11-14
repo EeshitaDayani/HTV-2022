@@ -1,4 +1,4 @@
-from var_mod import var
+from python_scripts.var_mod import var
 import json
 import cohere
 

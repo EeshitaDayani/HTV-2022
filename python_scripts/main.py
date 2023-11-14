@@ -1,9 +1,9 @@
 import json
 import os
-from var_mod import shriya, adver, gac, var
-from googleCloudSpeechRec import SpeechRec
-from helper import Helper
-from models import emotionClassificationModel as ecm 
+from python_scripts.var_mod import shriya, adver, gac, var
+from python_scripts.googleCloudSpeechRec import SpeechRec
+from python_scripts.helper import Helper
+from python_scripts.models import emotionClassificationModel as ecm 
 # from models import textSummarizationModel as tsm
 import cohere
 co = cohere.Client('JovVsEhbD8cauTfCNsPh3CHGo8BhdUKhaF6j0Yln')
