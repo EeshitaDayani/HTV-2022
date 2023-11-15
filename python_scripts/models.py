@@ -1,5 +1,3 @@
-from python_scripts.var_mod import var
-import json
 import cohere
 
 co = cohere.Client('JovVsEhbD8cauTfCNsPh3CHGo8BhdUKhaF6j0Yln')

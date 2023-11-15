@@ -1,7 +1,7 @@
 import json
 import matplotlib.pyplot as plt
 import numpy as np
-from python_scripts.var_mod import emotions
+from var_mod import emotions
 
 class Helper():
     def make_resp_json(results):
